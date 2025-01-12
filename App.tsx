@@ -1,12 +1,8 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {AppRouter} from '@src/app/providers/router';
 
 function App() {
-  return (
-    <View>
-      <Text>Hello world</Text>
-    </View>
-  );
+  return <AppRouter />;
 }
 
 export default App;
