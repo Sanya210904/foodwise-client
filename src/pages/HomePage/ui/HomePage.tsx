@@ -1,11 +1,12 @@
-import {View, Text} from 'react-native';
+import {Text} from 'react-native';
 import React from 'react';
+import {ScreenView} from '@src/widgets/ScreenView';
 
 const HomePage = () => {
   return (
-    <View>
-      <Text>HomePage</Text>
-    </View>
+    <ScreenView>
+      <Text>Hello world</Text>
+    </ScreenView>
   );
 };
 

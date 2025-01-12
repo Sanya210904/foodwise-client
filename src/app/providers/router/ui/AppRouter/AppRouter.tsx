@@ -7,7 +7,7 @@ const RootStack = createNativeStackNavigator();
 
 const AppRouter = () => {
   const isAuth = true;
-    
+
   return (
     <RootStack.Navigator
       screenOptions={{
