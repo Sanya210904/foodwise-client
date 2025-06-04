@@ -7,8 +7,6 @@ import CustomButton, {
   ButtonType,
 } from '@src/shared/ui/CustomButton/CustomButton';
 import MapIcon from '@src/shared/assets/icons/map-icon.svg';
-import Input from '@src/shared/ui/Input/Input';
-
 
 const HomePage = () => {
   return (
@@ -29,11 +27,11 @@ const HomePage = () => {
         />
 
         <View style={styles.searchContainer}>
-          <Input
+          {/* <Input
             value={''}
             onChangeText={() => undefined}
             placeholder="Search"
-          />
+          /> */}
         </View>
       </View>
     </ScreenView>

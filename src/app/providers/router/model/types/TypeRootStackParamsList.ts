@@ -7,4 +7,6 @@ export type TypeRootStackParamsList = {
   [RouteName.SHOP]: {
     id: string;
   };
+  [RouteName.LOGIN]: undefined;
+  [RouteName.REGISTER]: undefined;
 };

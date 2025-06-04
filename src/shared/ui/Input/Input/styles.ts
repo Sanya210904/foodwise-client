@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
-import {colors} from '../../../app/styles/colors';
-import {fonts} from '../../../app/styles/fonts';
+import {colors} from '@src/app/styles/colors';
+import {fonts} from '@src/app/styles/fonts';
 
 export const styles = StyleSheet.create({
   label: {
@@ -10,7 +10,11 @@ export const styles = StyleSheet.create({
     paddingBottom: 8,
     fontFamily: fonts[600],
   },
+  inputWrapper: {
+    position: 'relative',
+  },
   input: {
+    // position: 'relative',
     borderRadius: 14,
     backgroundColor: colors.inputPrimary,
     paddingHorizontal: 12,
@@ -30,5 +34,27 @@ export const styles = StyleSheet.create({
     fontFamily: fonts[400],
     marginTop: 8,
     marginLeft: 8,
+  },
+  suffixBlock: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{translateY: '-50%'}],
+    right: 12,
+    width: 24,
+    height: 24,
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  prefixBlock: {
+    position: 'absolute',
+    top: '50%',
+    transform: [{translateY: '-50%'}],
+    left: 12,
+    width: 24,
+    height: 24,
+    zIndex: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
 });

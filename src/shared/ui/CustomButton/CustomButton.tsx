@@ -19,6 +19,7 @@ export enum ButtonType {
   SECONDARY = 'secondary',
   WHITE = 'white',
   LINK = 'link',
+  CLEAR = 'clear',
 }
 
 type CustomButtonProps = {
@@ -56,6 +57,7 @@ const CustomButton: FC<CustomButtonProps> = props => {
     if (type === ButtonType.SECONDARY) return styles.secondary;
     if (type === ButtonType.WHITE) return styles.white;
     if (type === ButtonType.LINK) return styles.link;
+    if (type === ButtonType.CLEAR) return styles.clear;
   }, [type, isDisabled, isLoading]);
 
   const getButtonTextStyles = useMemo(() => {
