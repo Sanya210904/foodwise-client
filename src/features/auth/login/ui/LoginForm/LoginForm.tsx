@@ -66,7 +66,7 @@ const LoginForm = () => {
         }
       />
       <CustomButton
-        title="Register"
+        title="Login"
         onPress={handleSubmit(onLogin)}
         style={styles.button}
         isDisabled={!isValid || isLoading}
