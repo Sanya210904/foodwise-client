@@ -1,11 +1,12 @@
 import React, {FC} from 'react';
 import {View, Text, Image} from 'react-native';
 import Card from '@src/shared/ui/Card/Card';
+import {API_MAIN_IMAGE_URL} from '@env';
 import {styles} from './styles';
 
 type ShopCardProps = {
   title: string;
-  minPrice: string;
+  minPrice: string | null;
   distance: number;
   productAmount: number;
   banner: string;
@@ -18,13 +19,19 @@ const ShopCard: FC<ShopCardProps> = props => {
   return (
     <Card width="100%" isPressable>
       <View style={styles.imageBlock}>
-        <Image source={{uri: banner}} style={styles.image} />
+        <Image
+          source={{uri: `${API_MAIN_IMAGE_URL}${banner}`}}
+          style={styles.image}
+        />
         <View style={styles.priceBlock}>
-          <Text style={styles.price}>from ${minPrice}</Text>
+          <Text style={styles.price}>from ${minPrice ?? 0}</Text>
         </View>
       </View>
       <View style={styles.infoBlock}>
-        <Image source={{uri: logo}} style={styles.logo} />
+        <Image
+          source={{uri: `${API_MAIN_IMAGE_URL}${logo}`}}
+          style={styles.logo}
+        />
         <View style={styles.header}>
           <Text style={styles.title}>{title}</Text>
           <View style={styles.footer}>

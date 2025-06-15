@@ -11,6 +11,7 @@ import {ExtraArgument} from '@src/shared/config/store/types';
 import {RouteName} from '@src/app/providers/router/model/constants/RouteName';
 import Toast from 'react-native-toast-message';
 import {setIsAuth} from './authSlice';
+import {clearUser, setUser} from '@src/entities/user/api/userSlice';
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: build => ({
@@ -28,7 +29,10 @@ export const authApi = baseApi.injectEndpoints({
             result.data.data.accessToken,
           );
 
+          const user = result.data.data.user;
+
           dispatch(setIsAuth(true));
+          dispatch(setUser(user));
           const typedExtra = extra as ExtraArgument;
           typedExtra.navigate(RouteName.HOME);
         } catch (error: any) {
@@ -55,6 +59,8 @@ export const authApi = baseApi.injectEndpoints({
             result.data.data.accessToken,
           );
 
+          const user = result.data.data.user;
+          dispatch(setUser(user));
           dispatch(setIsAuth(true));
           const typedExtra = extra as ExtraArgument;
           typedExtra.navigate(RouteName.HOME);
@@ -75,6 +81,7 @@ export const authApi = baseApi.injectEndpoints({
           await queryFulfilled;
           EncryptedStorage.removeItem(ES_ACCESS_TOKEN_KEY);
 
+          dispatch(clearUser());
           dispatch(setIsAuth(false));
           const typedExtra = extra as ExtraArgument;
           typedExtra.navigate(RouteName.LOGIN);
@@ -92,6 +99,9 @@ export const authApi = baseApi.injectEndpoints({
             ES_ACCESS_TOKEN_KEY,
             result.data.data.accessToken,
           );
+
+          const user = result.data.data.user;
+          dispatch(setUser(user));
           dispatch(setIsAuth(true));
         } catch (error) {
           console.error(error);

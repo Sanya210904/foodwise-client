@@ -3,12 +3,12 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {privateRoutes, publicRoutes} from '../../model/constants/routeList';
 import BottomTabs from '../BottomTabs/BottomTabs';
 import {getIsAuth} from '@src/entities/auth';
-import {useSelector} from 'react-redux';
+import {useAppSelector} from '@src/shared/hooks/useAppSelector';
 
 const RootStack = createNativeStackNavigator();
 
 const AppRouter = () => {
-  const isAuth = useSelector(getIsAuth);
+  const isAuth = useAppSelector(getIsAuth);
 
   return (
     <RootStack.Navigator

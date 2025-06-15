@@ -1,4 +1,4 @@
-import { FC, ReactNode } from 'react';
+import {FC, ReactNode} from 'react';
 import {
   View,
   DimensionValue,
@@ -6,12 +6,12 @@ import {
   StyleProp,
   ViewStyle,
 } from 'react-native';
-import { Shadow, ShadowProps } from 'react-native-shadow-2';
-import { styles } from './styles';
+import {Shadow, ShadowProps} from 'react-native-shadow-2';
+import {styles} from './styles';
 
 type CardProps = {
   children: ReactNode;
-  width: DimensionValue;
+  width?: DimensionValue;
   height?: DimensionValue;
   padding?: DimensionValue;
   isPressable?: boolean;
@@ -29,7 +29,7 @@ const cardShadow = {
 const Card: FC<CardProps> = props => {
   const {
     children,
-    width,
+    width = '100%',
     height,
     padding,
     isPressable = false,
@@ -49,7 +49,7 @@ const Card: FC<CardProps> = props => {
           activeOpacity={0.85}
           onPress={onPress}
           style={styles.touchable}>
-          <View style={[{ width, height, padding }, styles.card, cardStyles]}>
+          <View style={[{width, height, padding}, styles.card, cardStyles]}>
             <View>{children}</View>
           </View>
         </TouchableOpacity>
@@ -64,7 +64,7 @@ const Card: FC<CardProps> = props => {
         height,
       }}
       {...cardShadow}>
-      <View style={[{ width, height, padding }, styles.card, cardStyles]}>
+      <View style={[{width, height, padding}, styles.card, cardStyles]}>
         {children}
       </View>
     </Shadow>

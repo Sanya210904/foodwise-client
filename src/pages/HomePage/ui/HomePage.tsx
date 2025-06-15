@@ -7,6 +7,7 @@ import CustomButton, {
   ButtonType,
 } from '@src/shared/ui/CustomButton/CustomButton';
 import MapIcon from '@src/shared/assets/icons/map-icon.svg';
+import {ShopExplorer} from '@src/widgets/ShopExplorer';
 
 const HomePage = () => {
   return (
@@ -14,6 +15,7 @@ const HomePage = () => {
       <View style={styles.container}>
         <Header
           title="Nearby places"
+          
           HelperButton={
             <CustomButton
               onPress={() => undefined}
@@ -26,13 +28,7 @@ const HomePage = () => {
           }
         />
 
-        <View style={styles.searchContainer}>
-          {/* <Input
-            value={''}
-            onChangeText={() => undefined}
-            placeholder="Search"
-          /> */}
-        </View>
+        <ShopExplorer />
       </View>
     </ScreenView>
   );
