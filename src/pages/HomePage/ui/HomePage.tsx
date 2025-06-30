@@ -9,13 +9,15 @@ import CustomButton, {
 import MapIcon from '@src/shared/assets/icons/map-icon.svg';
 import {ShopExplorer} from '@src/widgets/ShopExplorer';
 
+
 const HomePage = () => {
+  
+
   return (
     <ScreenView>
       <View style={styles.container}>
         <Header
           title="Nearby places"
-          
           HelperButton={
             <CustomButton
               onPress={() => undefined}

@@ -3,7 +3,6 @@ import {Shop} from './Shop';
 
 export type FetchShopsRequest = {
   page: number;
-  query: string;
 };
 
 export type FetchShopsResponse = {

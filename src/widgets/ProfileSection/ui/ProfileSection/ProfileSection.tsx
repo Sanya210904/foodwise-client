@@ -23,19 +23,16 @@ const ProfileSection: FC<ProfileSectionProps> = props => {
       <Card width="100%">
         {items?.map((item, index) => {
           return (
-            <>
+            <View key={index}>
               <TouchableOpacity
-                key={index}
                 onPress={item.onPress}
                 activeOpacity={0.85}
                 style={styles.row}>
                 <Text style={styles.label}>{item.label}</Text>
                 <ArrowIcon />
               </TouchableOpacity>
-              {index < items.length - 1 && (
-                <View key={index + 'a'} style={styles.divider} />
-              )}
-            </>
+              {index < items.length - 1 && <View style={styles.divider} />}
+            </View>
           );
         })}
       </Card>

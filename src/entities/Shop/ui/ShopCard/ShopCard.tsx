@@ -5,19 +5,22 @@ import {API_MAIN_IMAGE_URL} from '@env';
 import {styles} from './styles';
 
 type ShopCardProps = {
+  id: string;
   title: string;
   minPrice: string | null;
   distance: number;
   productAmount: number;
   banner: string;
   logo: string;
+  onPress: (id: string, name: string) => void;
 };
 
 const ShopCard: FC<ShopCardProps> = props => {
-  const {title, minPrice, distance, productAmount, banner, logo} = props;
+  const {id, title, minPrice, distance, productAmount, banner, logo, onPress} =
+    props;
 
   return (
-    <Card width="100%" isPressable>
+    <Card width="100%" isPressable onPress={() => onPress(id, title)}>
       <View style={styles.imageBlock}>
         <Image
           source={{uri: `${API_MAIN_IMAGE_URL}${banner}`}}

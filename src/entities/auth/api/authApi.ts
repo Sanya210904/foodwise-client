@@ -107,6 +107,11 @@ export const authApi = baseApi.injectEndpoints({
           console.error(error);
           EncryptedStorage.removeItem(ES_ACCESS_TOKEN_KEY);
           dispatch(setIsAuth(false));
+          Toast.show({
+            type: 'error',
+            text1: 'Login error',
+            text2: `${error?.error?.data?.error?.message}`,
+          });
         }
       },
     }),
