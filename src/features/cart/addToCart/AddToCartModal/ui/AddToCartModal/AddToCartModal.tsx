@@ -12,12 +12,10 @@ import {styles} from './styles';
 import {getFormattedDate} from '@src/shared/helpers/getFormattedDate';
 import {getDaysDifferenceFromNow} from '@src/shared/helpers/getDaysDifferenceFromNow';
 import {getDaysDifferenceMessage} from '../../model/helpers/getDaysDifferenceMessage';
-import {useAppDispatch} from '@src/shared/hooks/useAppDispatch';
-import {fetchAddToCart} from '@src/entities/cart/api/services/fetchAddToCart';
 import {FetchAddToCartRequest} from '@src/entities/cart/model/types/FetchAddToCart';
-import {useAppSelector} from '@src/shared/hooks/useAppSelector';
 import {useAppNavigation} from '@src/shared/hooks/useAppNavigation';
 import {RouteName} from '@src/app/providers/router/model/constants/RouteName';
+import {useAddToCartMutation} from '@src/entities/cart/api/cartApi';
 
 type AddToCartModalProps = {
   isOpen: boolean;
@@ -28,9 +26,8 @@ type AddToCartModalProps = {
 
 const AddToCartModal: FC<AddToCartModalProps> = props => {
   const {isOpen, onClose, product} = props;
+  const [addToCart, {isLoading}] = useAddToCartMutation();
   const navigation = useAppNavigation();
-  const error = useAppSelector(state => state.cart.error);
-  const dispatch = useAppDispatch();
 
   const [chosenAmount, setChosenAmount] = useState<number>(1);
   const [isAddedToCart, setIsAddedToCart] = useState<boolean>(false);
@@ -44,16 +41,15 @@ const AddToCartModal: FC<AddToCartModalProps> = props => {
     };
 
     try {
-      await dispatch(fetchAddToCart(serverData)).unwrap();
+      await addToCart(serverData);
       setIsAddedToCart(true);
-    } catch (e) {
-      console.error('Error while adding to cart');
-    }
+    } catch (e) {}
   };
 
   const handleCloseModal = () => {
     onClose();
     setIsAddedToCart(false);
+    setChosenAmount(1);
   };
 
   const handleNavigateToCart = () => {
@@ -123,6 +119,7 @@ const AddToCartModal: FC<AddToCartModalProps> = props => {
               title={!isAddedToCart ? 'Add to cart' : 'Go to cart'}
               onPress={!isAddedToCart ? handleAddToCart : handleNavigateToCart}
               type={!isAddedToCart ? ButtonType.PRIMARY : ButtonType.SECONDARY}
+              isLoading={isLoading}
             />
           </View>
         </View>

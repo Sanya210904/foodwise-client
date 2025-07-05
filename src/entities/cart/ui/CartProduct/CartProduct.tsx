@@ -5,6 +5,7 @@ import {API_MAIN_IMAGE_URL} from '@env';
 import {getFormattedDate} from '@src/shared/helpers/getFormattedDate';
 
 type CartProductProps = {
+  id: string;
   title: string;
   expDate: string;
   discountPrice: number;

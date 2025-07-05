@@ -103,8 +103,7 @@ export const authApi = baseApi.injectEndpoints({
           const user = result.data.data.user;
           dispatch(setUser(user));
           dispatch(setIsAuth(true));
-        } catch (error) {
-          console.error(error);
+        } catch (error: any) {
           EncryptedStorage.removeItem(ES_ACCESS_TOKEN_KEY);
           dispatch(setIsAuth(false));
           Toast.show({

@@ -41,3 +41,8 @@ export type ProductProposition = {
   title: string;
   _id: string;
 };
+
+export type ShortProductProposition = {
+  product_prop_id: string;
+  quantity: number;
+};

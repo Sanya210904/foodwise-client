@@ -1,34 +1,15 @@
-import React, {useEffect} from 'react';
+import React from 'react';
 import {ScreenView} from '@src/widgets/ScreenView';
 import {Header} from '@src/widgets/Header';
 import {ShopCart} from '@src/widgets/ShopCart';
 import {View} from 'react-native';
+import {useGetCartQuery} from '@src/entities/cart/api/cartApi';
 import {styles} from './styles';
-import {useAppDispatch} from '@src/shared/hooks/useAppDispatch';
-import {fetchCart} from '@src/entities/cart/api/services/fetchCart';
-import {useAppSelector} from '@src/shared/hooks/useAppSelector';
 
 const CartPage = () => {
-  const cart = useAppSelector(state => state.cart.cart);
-  const dispatch = useAppDispatch();
+  const {data: cart} = useGetCartQuery(undefined);
 
-  useEffect(() => {
-    if (cart) {
-      const shopIds = cart.map(item => item.product_props?.length);
-      console.log(shopIds);
-    }
-  }, [cart]);
-
-  useEffect(() => {
-    getCart();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  const getCart = async () => {
-    await dispatch(fetchCart());
-  };
-
-  if (!cart) {
+  if (!cart?.data) {
     return null;
   }
 
@@ -38,9 +19,10 @@ const CartPage = () => {
         <Header title="Cart" />
 
         <View style={styles.body}>
-          {cart.map((shopCart, idx) => (
+          {cart.data.map((shopCart, idx) => (
             <ShopCart
               key={idx}
+              shopId={shopCart.shop._id}
               shopName={shopCart.shop.name}
               totalPrice={Number(shopCart.overall_price.$numberDecimal)}
               products={shopCart.product_props}

@@ -8,6 +8,7 @@ export const styles = StyleSheet.create({
     justifyContent: 'space-between',
     // paddingVertical: 8,
     alignItems: 'center',
+    backgroundColor: colors.surfacePrimary,
   },
   block: {
     flexDirection: 'row',
@@ -38,6 +39,7 @@ export const styles = StyleSheet.create({
   },
   priceBlock: {
     alignItems: 'flex-end',
+    marginRight: 4,
   },
   price: {
     textDecorationLine: 'line-through',

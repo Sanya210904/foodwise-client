@@ -11,7 +11,7 @@ type ShopListProps = {
 };
 
 const ShopList: FC<ShopListProps> = props => {
-  const {query = '', onShopCardPress} = props;
+  const {onShopCardPress} = props;
 
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState<number | null>(null);

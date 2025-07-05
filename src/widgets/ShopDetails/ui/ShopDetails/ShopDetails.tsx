@@ -6,6 +6,7 @@ import ClockIcon from '@src/shared/assets/icons/clock-icon.svg';
 import GeoIcon from '@src/shared/assets/icons/geolocation-icon.svg';
 import PercentageIcon from '@src/shared/assets/icons/percentage-icon.svg';
 import {styles} from './styles';
+import CustomImage from '@src/shared/ui/CustomImage/CustomImage';
 
 type ShopDetailsProps = {
   shopId: string;
@@ -18,10 +19,20 @@ const ShopDetails: FC<ShopDetailsProps> = props => {
     shopId,
   });
 
+  if (!shop) {
+    return null;
+  }
+
   return (
     <View style={style}>
-      <Image
+      {/* <Image
         source={{uri: `${API_MAIN_IMAGE_URL}${shop?.banner}`}}
+        style={styles.banner}
+      /> */}
+      <CustomImage
+        imageId={shop.banner}
+        width="100%"
+        height={283}
         style={styles.banner}
       />
       <View style={styles.block}>

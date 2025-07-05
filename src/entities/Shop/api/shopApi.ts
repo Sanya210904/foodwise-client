@@ -17,7 +17,19 @@ export const shopApi = baseApi.injectEndpoints({
         },
       }),
       merge: (currentCache, newItems) => {
-        currentCache.data = [...currentCache.data, ...newItems.data];
+        if (!currentCache.data.length) {
+          return newItems;
+        }
+
+        const existingIds = new Set(currentCache.data.map(item => item._id));
+        const newUniqueItems = newItems.data.filter(
+          item => !existingIds.has(item._id),
+        );
+
+        return {
+          ...newItems,
+          data: [...currentCache.data, ...newUniqueItems],
+        };
       },
       forceRefetch({currentArg, previousArg}) {
         return currentArg?.page !== previousArg?.page;

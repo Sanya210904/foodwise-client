@@ -12,8 +12,6 @@ export const useAnimateExpandCard = () => {
   const contentMaxHeight = useSharedValue(0);
 
   const handleChangeExpand = () => {
-    setIsExpanded(prev => !prev);
-
     if (!isExpanded) {
       expandIconRotate.value = withTiming(180, {duration: 100});
       contentMaxHeight.value = withTiming(400, {duration: 300});
@@ -21,6 +19,7 @@ export const useAnimateExpandCard = () => {
       expandIconRotate.value = withTiming(0, {duration: 100});
       contentMaxHeight.value = withTiming(0, {duration: 300});
     }
+    setIsExpanded(prev => !prev);
   };
 
   const animatedIconStyle = useAnimatedStyle(() => {
@@ -36,5 +35,9 @@ export const useAnimateExpandCard = () => {
     };
   });
 
-  return {handleChangeExpand, animatedIconStyle, animatedContentStyle};
+  return {
+    handleChangeExpand,
+    animatedIconStyle,
+    animatedContentStyle,
+  };
 };

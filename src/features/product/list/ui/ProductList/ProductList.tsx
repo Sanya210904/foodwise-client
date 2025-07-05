@@ -4,7 +4,6 @@ import {FlashList} from '@shopify/flash-list';
 import {CartProduct, ProductCard} from '@src/entities/product';
 import {styles} from './styles';
 import {useInfiniteProductsList} from '../../model/hooks/useInfiniteProductsList';
-import Loader from '@src/shared/ui/Loader/Loader';
 
 type ProductListProps = {
   shopId: string;
@@ -16,11 +15,11 @@ type ProductListProps = {
 const ProductList: FC<ProductListProps> = props => {
   const {shopId, onProductPress, ListHeaderComponent, onScroll} = props;
 
-  const {data, isLoading, handleOnEndReached} = useInfiniteProductsList(shopId);
+  const {data, handleOnEndReached} = useInfiniteProductsList(shopId);
 
-  if (isLoading) {
-    return <Loader />;
-  }
+  // if (isLoading) {
+  //   return <Loader />;
+  // }
 
   return (
     <>

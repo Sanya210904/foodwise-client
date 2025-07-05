@@ -1,8 +1,8 @@
 import {View} from 'react-native';
 import React, {useState} from 'react';
 import {useDebounce} from '@src/shared/hooks/useDebounce';
-import {SearchShopInput} from '@src/features/shops/search';
-import {ShopList} from '@src/features/shops/list';
+import {SearchShopInput} from '@src/features/shop/search';
+import {ShopList} from '@src/features/shop/list';
 import {styles} from './styles';
 import {useAppNavigation} from '@src/shared/hooks/useAppNavigation';
 import {RouteName} from '@src/app/providers/router/model/constants/RouteName';

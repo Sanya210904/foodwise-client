@@ -1,7 +1,7 @@
 import React, {FC, useState} from 'react';
 import {View} from 'react-native';
 import {ProductList} from '@src/features/product/list';
-import {AddToCartModal} from '@src/widgets/AddToCartModal';
+import {AddToCartModal} from '@src/features/cart/addToCart/AddToCartModal';
 import {CartProduct} from '@src/entities/product/model/types/Product';
 import {ShopDetails} from '@src/widgets/ShopDetails';
 import {useSharedValue} from 'react-native-reanimated';

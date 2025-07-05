@@ -1,25 +1,38 @@
 import Card from '@src/shared/ui/Card/Card';
 import React, {FC} from 'react';
 import {Text, TouchableWithoutFeedback, View} from 'react-native';
-import CustomButton from '@src/shared/ui/CustomButton/CustomButton';
-import {CartProduct} from '@src/entities/cart';
 import ExpandIcon from '@src/shared/assets/icons/expand-icon.svg';
 import Animated from 'react-native-reanimated';
 import {styles} from './styles';
-import {ProductProposition} from '@src/entities/product/model/types/Product';
+import {
+  ProductProposition,
+  ShortProductProposition,
+} from '@src/entities/product/model/types/Product';
 import {useAnimateExpandCard} from '../../model/hooks/useAnimateExpandCard';
+import {SwipeToRemoveCartProduct} from '@src/features/cart/removeFromCart';
+import {BuyShopCartButton} from '@src/features/cart/buyShopCart';
 
 type ShopCartProps = {
   shopName: string;
   totalPrice: number;
   products: ProductProposition[];
+  shopId: string;
 };
 
 const ShopCart: FC<ShopCartProps> = props => {
-  const {shopName, totalPrice, products} = props;
+  const {shopName, totalPrice, products, shopId} = props;
 
   const {handleChangeExpand, animatedIconStyle, animatedContentStyle} =
     useAnimateExpandCard();
+
+  const productPropositions = products.map(product => {
+    const productProposition: ShortProductProposition = {
+      product_prop_id: product._id,
+      quantity: product.quantity,
+    };
+
+    return productProposition;
+  });
 
   return (
     <Card padding={16}>
@@ -35,8 +48,9 @@ const ShopCart: FC<ShopCartProps> = props => {
       <Animated.View style={animatedContentStyle}>
         <View style={styles.productWrapper}>
           {products.map((product, idx) => (
-            <View key={idx} style={styles.productBlock}>
-              <CartProduct
+            <View key={product._id} style={styles.productBlock}>
+              <SwipeToRemoveCartProduct
+                id={product.basket_item_id}
                 title={product.title}
                 price={Number(product.price.$numberDecimal)}
                 discountPrice={Number(product.discount_price.$numberDecimal)}
@@ -49,10 +63,10 @@ const ShopCart: FC<ShopCartProps> = props => {
           ))}
         </View>
 
-        <CustomButton
-          onPress={() => undefined}
-          title={`Pay $${totalPrice}`}
-          height={54}
+        <BuyShopCartButton
+          shopId={shopId}
+          totalPrice={totalPrice}
+          products={productPropositions}
         />
       </Animated.View>
     </Card>
