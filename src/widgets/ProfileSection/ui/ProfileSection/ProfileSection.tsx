@@ -1,17 +1,12 @@
-import {View, Text, TouchableOpacity} from 'react-native';
+import {View, Text} from 'react-native';
 import React, {FC} from 'react';
 import Card from '@src/shared/ui/Card/Card';
-import ArrowIcon from '@src/shared/assets/icons/arrow-right-icon.svg';
 import {styles} from './styles';
-
-type ProfileBlock = {
-  label: string;
-  onPress: () => void;
-};
+import {ProfileRow, ProfileSettingsRow} from '@src/entities/profile';
 
 type ProfileSectionProps = {
-  items?: ProfileBlock[];
-  title: string;
+  items?: ProfileSettingsRow[];
+  title?: string;
 };
 
 const ProfileSection: FC<ProfileSectionProps> = props => {
@@ -19,18 +14,12 @@ const ProfileSection: FC<ProfileSectionProps> = props => {
 
   return (
     <View style={styles.block}>
-      <Text style={styles.title}>{title}</Text>
+      {title && <Text style={styles.title}>{title}</Text>}
       <Card width="100%">
         {items?.map((item, index) => {
           return (
             <View key={index}>
-              <TouchableOpacity
-                onPress={item.onPress}
-                activeOpacity={0.85}
-                style={styles.row}>
-                <Text style={styles.label}>{item.label}</Text>
-                <ArrowIcon />
-              </TouchableOpacity>
+              <ProfileRow profile={item} />
               {index < items.length - 1 && <View style={styles.divider} />}
             </View>
           );

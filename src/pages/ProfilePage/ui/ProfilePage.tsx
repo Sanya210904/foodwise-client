@@ -5,6 +5,7 @@ import {UserQrCard} from '@src/widgets/UserClientCard';
 import {styles} from './styles';
 import {Header} from '@src/widgets/Header';
 import {ProfileSection} from '@src/widgets/ProfileSection';
+import {LogoutButton} from '@src/features/auth/logout';
 
 const ProfilePage = () => {
   return (
@@ -40,6 +41,8 @@ const ProfilePage = () => {
             },
           ]}
         />
+
+        <LogoutButton />
       </View>
     </ScreenView>
   );

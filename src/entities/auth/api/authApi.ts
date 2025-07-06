@@ -74,8 +74,8 @@ export const authApi = baseApi.injectEndpoints({
         }
       },
     }),
-    logout: build.query({
-      query: () => authApiUrls.logout,
+    logout: build.mutation({
+      query: () => ({url: authApiUrls.logout, method: 'GET'}),
       async onQueryStarted(_, {queryFulfilled, extra, dispatch}) {
         try {
           await queryFulfilled;
@@ -120,6 +120,6 @@ export const authApi = baseApi.injectEndpoints({
 export const {
   useRegisterMutation,
   useLoginMutation,
-  useLogoutQuery,
+  useLogoutMutation,
   useCheckAuthQuery,
 } = authApi;

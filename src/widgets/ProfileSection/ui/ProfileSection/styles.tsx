@@ -13,15 +13,5 @@ export const styles = StyleSheet.create({
     height: 1,
     backgroundColor: '#EBEBEB',
   },
-  row: {
-    paddingVertical: 18,
-    paddingHorizontal: 12,
-    justifyContent: 'space-between',
-    alignItems: 'center',
-    flexDirection: 'row',
-  },
-  label: {
-    fontSize: 18,
-    fontFamily: fonts[500],
-  },
+  
 });
