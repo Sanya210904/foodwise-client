@@ -4,14 +4,9 @@ import {StyleSheet} from 'react-native';
 export const styles = StyleSheet.create({
   container: {
     paddingHorizontal: offsets.containerOffsetHorizontal,
+    flex: 1,
   },
-  tabsBlock: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-between',
-  },
-  body: {
+  list: {
     marginTop: 24,
-    rowGap: 24,
   },
 });

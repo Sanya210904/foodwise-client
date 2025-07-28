@@ -1,10 +1,10 @@
 import React from 'react';
 import {ScreenView} from '@src/widgets/ScreenView';
 import {Header} from '@src/widgets/Header';
-import {ShopCart} from '@src/widgets/ShopCart';
 import {View} from 'react-native';
 import {useGetCartQuery} from '@src/entities/cart/api/cartApi';
 import {styles} from './styles';
+import {ShopCartList} from '@src/features/cart/list';
 
 const CartPage = () => {
   const {data: cart} = useGetCartQuery(undefined);
@@ -18,17 +18,7 @@ const CartPage = () => {
       <View style={styles.container}>
         <Header title="Cart" />
 
-        <View style={styles.body}>
-          {cart.data.map((shopCart, idx) => (
-            <ShopCart
-              key={idx}
-              shopId={shopCart.shop._id}
-              shopName={shopCart.shop.name}
-              totalPrice={Number(shopCart.overall_price.$numberDecimal)}
-              products={shopCart.product_props}
-            />
-          ))}
-        </View>
+        <ShopCartList />
       </View>
     </ScreenView>
   );

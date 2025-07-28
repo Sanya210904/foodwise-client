@@ -22,7 +22,6 @@ export const cartApi = baseApi.injectEndpoints({
       providesTags: ['Cart'],
       async onQueryStarted(_, {queryFulfilled}) {
         try {
-          console.log('getting cart');
           await queryFulfilled;
         } catch (error: any) {
           console.error(error?.error?.data?.error?.message);

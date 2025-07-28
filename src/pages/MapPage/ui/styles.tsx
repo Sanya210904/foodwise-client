@@ -1,5 +1,4 @@
 import {colors} from '@src/app/styles/colors';
-import {offsets} from '@src/app/styles/offsets';
 import {StyleSheet} from 'react-native';
 
 export const styles = StyleSheet.create({
