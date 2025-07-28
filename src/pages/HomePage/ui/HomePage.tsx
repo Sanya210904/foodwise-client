@@ -8,10 +8,15 @@ import CustomButton, {
 } from '@src/shared/ui/CustomButton/CustomButton';
 import MapIcon from '@src/shared/assets/icons/map-icon.svg';
 import {ShopExplorer} from '@src/widgets/ShopExplorer';
-
+import {useAppNavigation} from '@src/shared/hooks/useAppNavigation';
+import {RouteName} from '@src/app/providers/router/model/constants/RouteName';
 
 const HomePage = () => {
-  
+  const navigation = useAppNavigation();
+
+  const handleMapPress = () => {
+    navigation.navigate(RouteName.MAP);
+  };
 
   return (
     <ScreenView>
@@ -20,7 +25,7 @@ const HomePage = () => {
           title="Nearby places"
           HelperButton={
             <CustomButton
-              onPress={() => undefined}
+              onPress={handleMapPress}
               width={70}
               height={43}
               type={ButtonType.LINK}

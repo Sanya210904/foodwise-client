@@ -16,6 +16,7 @@ end
 
 target 'foodwise' do
   config = use_native_modules!
+  pod 'MapboxMaps', '10.19.0'
 
   use_react_native!(
     :path => config[:reactNativePath],
@@ -38,3 +39,4 @@ target 'foodwise' do
     )
   end
 end
+

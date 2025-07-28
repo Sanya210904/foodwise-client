@@ -10,6 +10,7 @@ import {
   FetchBuyShopCartRequest,
   FetchBuyShopCartResponse,
 } from '../model/types/FetchBuyShopCart';
+import Toast from 'react-native-toast-message';
 
 export const cartApi = baseApi.injectEndpoints({
   endpoints: build => ({
@@ -115,6 +116,11 @@ export const cartApi = baseApi.injectEndpoints({
       async onQueryStarted(data, {queryFulfilled}) {
         try {
           await queryFulfilled;
+          Toast.show({
+            type: 'success',
+            text1: 'Your order has been successfully placed!',
+            text2: 'Wait for shop to confirm your order',
+          });
         } catch (error: any) {
           console.error(error?.error?.data?.error?.message);
         }

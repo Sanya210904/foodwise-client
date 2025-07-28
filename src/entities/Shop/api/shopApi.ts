@@ -6,6 +6,10 @@ import {
   FetchShopByIdResponse,
 } from '../model/types/FetchShopById';
 import {Shop} from '../model/types/Shop';
+import {
+  FetchShopsByRadiusRequest,
+  FetchShopsByRadiusResponse,
+} from '../model/types/FetchShopsByRadius';
 
 export const shopApi = baseApi.injectEndpoints({
   endpoints: build => ({
@@ -14,6 +18,7 @@ export const shopApi = baseApi.injectEndpoints({
         url: shopApiUrls.search,
         params: {
           page: page || 1,
+          minProps: 1,
         },
       }),
       merge: (currentCache, newItems) => {
@@ -35,6 +40,45 @@ export const shopApi = baseApi.injectEndpoints({
         return currentArg?.page !== previousArg?.page;
       },
       async onQueryStarted(_, {queryFulfilled}) {
+        try {
+          await queryFulfilled;
+        } catch (e) {
+          console.error('Error fetching shops:', e);
+        }
+      },
+    }),
+    getShopsByRadius: build.query<
+      FetchShopsByRadiusResponse,
+      FetchShopsByRadiusRequest
+    >({
+      query: ({page, radius, coordinates}) => ({
+        url: shopApiUrls.search,
+        params: {
+          page: page || 1,
+          radius,
+          coordinates,
+          minProps: 1,
+        },
+      }),
+      merge: (currentCache, newItems) => {
+        if (!currentCache.data.length) {
+          return newItems;
+        }
+
+        const existingIds = new Set(currentCache.data.map(item => item._id));
+        const newUniqueItems = newItems.data.filter(
+          item => !existingIds.has(item._id),
+        );
+
+        return {
+          ...newItems,
+          data: [...currentCache.data, ...newUniqueItems],
+        };
+      },
+      forceRefetch({currentArg, previousArg}) {
+        return currentArg?.page !== previousArg?.page;
+      },
+      async onQueryStarted(data, {queryFulfilled}) {
         try {
           await queryFulfilled;
         } catch (e) {
@@ -66,4 +110,5 @@ export const shopApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {useSearchShopsQuery, useGetShopQuery} = shopApi;
+export const {useSearchShopsQuery, useGetShopsByRadiusQuery, useGetShopQuery} =
+  shopApi;

@@ -1,4 +1,4 @@
-import { NavigatorScreenParams } from '@react-navigation/native';
+import {NavigatorScreenParams} from '@react-navigation/native';
 import {RouteName} from '../constants/RouteName';
 
 export type TypeRootStackParamsList = {
@@ -9,6 +9,7 @@ export type TypeRootStackParamsList = {
   };
   [RouteName.LOGIN]: undefined;
   [RouteName.REGISTER]: undefined;
+  [RouteName.MAP]: undefined;
 };
 
 export type TypeBottomTabsParamsList = {

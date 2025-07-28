@@ -60,6 +60,7 @@ export const authApi = baseApi.injectEndpoints({
           );
 
           const user = result.data.data.user;
+          console.log(user);
           dispatch(setUser(user));
           dispatch(setIsAuth(true));
           const typedExtra = extra as ExtraArgument;

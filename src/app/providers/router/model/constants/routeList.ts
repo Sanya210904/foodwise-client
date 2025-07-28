@@ -7,6 +7,7 @@ import {ProfilePage} from '@src/pages/ProfilePage';
 import {ShopPage} from '@src/pages/ShopPage';
 import {LoginPage} from '@src/pages/LoginPage';
 import {RegisterPage} from '@src/pages/RegisterPage';
+import {MapPage} from '@src/pages/MapPage';
 
 import HomeIcon from '@src/shared/assets/icons/home-icon.svg';
 import CartIcon from '@src/shared/assets/icons/cart-icon.svg';
@@ -27,6 +28,10 @@ export const privateRoutes: Route[] = [
   {
     name: RouteName.SHOP,
     component: ShopPage,
+  },
+  {
+    name: RouteName.MAP,
+    component: MapPage,
   },
 ];
 

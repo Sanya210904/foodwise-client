@@ -5,4 +5,5 @@ export enum RouteName {
   SHOP = 'shop',
   LOGIN = 'login',
   REGISTER = 'register',
+  MAP = 'map',
 }

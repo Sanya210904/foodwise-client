@@ -24,7 +24,11 @@ export const baseQuery = fetchBaseQuery({
 const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
   let result = await baseQuery(args, api, extraOptions);
 
-  if (result.error && result.error.status === 401) {
+  if (
+    result.error &&
+    (result?.meta?.response?.status === 401 ||
+      result?.meta?.response?.status === 403)
+  ) {
     console.log('Getting refresh tokens');
 
     try {
@@ -40,6 +44,8 @@ const baseQueryWithReauth: BaseQueryFn = async (args, api, extraOptions) => {
       if (refreshResult.data) {
         //@ts-ignore
         const currentAccessToken = refreshResult.data.accessToken;
+        console.log(currentAccessToken);
+        console.log(refreshResult.data);
 
         await EncryptedStorage.setItem(ES_ACCESS_TOKEN_KEY, currentAccessToken);
 
